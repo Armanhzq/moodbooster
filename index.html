@@ -182,7 +182,7 @@
   <!-- Playlist -->
   <div id="playlist" class="section">
     <h2>Chill Playlist</h2>
-    <button onclick="showPlaylist()">Next Song</button>
+    <button onclick="showPlaylist()">Random Song</button>
     <iframe id="playlist-frame" src="" allowfullscreen></iframe>
   </div>
 
@@ -215,18 +215,12 @@
     const boosterImages = Array.from({ length: 8 }, (_, i) => `images/boost${i + 1}.jpg`);
     const animalImages = Array.from({ length: 8 }, (_, i) => `images/animal${i + 1}.jpg`);
 
-    const playlists = [
-      "https://www.youtube.com/embed/88k2ZSgh8DA",
-      "https://www.youtube.com/embed/qe5GZB6TL4U",
-      "https://www.youtube.com/embed/3pQinVqN9vM",
-      "https://www.youtube.com/embed/BEVMWRgYqXg",
-      "https://www.youtube.com/embed/hZV7TWUPUP4",
-      "https://www.youtube.com/embed/C1oZ_6MUDi4",
-      "https://www.youtube.com/embed/0VJpNZtZzqU",
-      "https://www.youtube.com/embed/b2tWAVaxObo",
-      "https://www.youtube.com/embed/Hs8ZGC6UiwI",
-      "https://www.youtube.com/embed/2K8NBfZDx1M"
-    ];
+const playlists = [
+  "https://www.youtube.com/embed/NIDh_hqRbLI?si=4PlKle592gs2f6o2", // Noh Salleh - Rahsia Tuhan
+  "https://www.youtube.com/embed/xCtM1BRQJDM?si=lp6qI4OkOmDm0qK5", // Yuna - Dan Sebenarnya
+  "https://www.youtube.com/embed/ItbUQIXQUDs?si=qOJUJBqWaE6ti4oW", // Aina Abdul - Semalam
+];
+
 
     function showSection(id) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
