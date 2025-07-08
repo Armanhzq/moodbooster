@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mood Booster</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+        }
+
+        header {
+            background-color: #4CAF50;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        nav button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .section {
+            display: none;
+            padding: 20px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        .home-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            height: calc(100vh - 80px);
+        }
+
+        .home-buttons button {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .home-buttons button:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-buttons button span {
+            display: block;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 12px 18px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .btn-kindness {
+            background-image: url('images/kindness.jpg');
+        }
+
+        .btn-booster {
+            background-image: url('images/booster.jpg');
+        }
+
+        .btn-playlist {
+            background-image: url('images/playlist.jpg');
+        }
+
+        .btn-animals {
+            background-image: url('images/animals.jpg');
+        }
+
+        .home-buttons button span {
+            display: block;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 24px;
+            padding: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 8px;
+        }
+
+        .home-buttons button {
+            position: relative;
+        }
+
+        #animal-img,
+        #booster-output {
+            margin-top: 20px;
+            max-width: 300px;
+        }
+
+        iframe {
+            border: none;
+            width: 100%;
+            max-width: 600px;
+            height: 340px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Mood Booster</h1>
+        <nav>
+            <button onclick="showSection('home')">Home</button>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="section active" style="height: calc(100vh - 80px); padding: 0;">
+        <div class="home-buttons">
+            <button class="btn-kindness" onclick="showSection('kindness')"><span>Daily Kindness</span></button>
+            <button class="btn-booster" onclick="showSection('booster')"><span>Boost Me</span></button>
+            <button class="btn-playlist" onclick="showSection('playlist')"><span>Playlist</span></button>
+            <button class="btn-animals" onclick="showSection('animals')"><span>Cute Animals</span></button>
+        </div>
+    </div>
+
+    <!-- 1. Daily Dose of Kindness -->
+    <div id="kindness" class="section">
+        <h2>Daily Dose of Kindness</h2>
+        <p id="daily-quote"></p>
+    </div>
+
+    <!-- 2. Mood Booster Button -->
+    <div id="booster" class="section">
+        <h2>Need a Quick Boost?</h2>
+        <button onclick="showBooster()">Boost Me!</button>
+        <div id="booster-output"></div>
+    </div>
+
+    <!-- 5. Cheer-Up Playlist -->
+    <div id="playlist" class="section">
+        <h2>Cheer-Up Playlist</h2>
+        <iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" allowfullscreen></iframe>
+    </div>
+
+    <!-- 6. Cute Animal Generator -->
+    <div id="animals" class="section">
+        <h2>Need Some Cuteness?</h2>
+        <button onclick="showAnimal()">Show Me an Animal</button>
+        <div><img id="animal-img" src="" alt="Cute Animal" /></div>
+    </div>
+
+    <script>
+        const quotes = [
+            "You are doing better than you think.",
+            "You’ve made it through 100% of your worst days.",
+            "Someone out there is grateful for you.",
+            "You deserve kindness — including your own."
+        ];
+
+        const boosters = [
+            "You're stronger than you feel.",
+            "Here's a smile just for you: 😊",
+            '<img src="images/happy-dog.jpg" alt="Happy Dog" width="200">',
+            '<audio controls autoplay src="sounds/relax.mp3"></audio>'
+        ];
+
+        const animalImages = [
+            "images/cat1.jpg",
+            "images/dog1.jpg",
+            "images/hamster1.jpg",
+            "images/bunny1.jpg"
+        ];
+
+        document.getElementById("daily-quote").textContent =
+            quotes[Math.floor(Math.random() * quotes.length)];
+
+        function showBooster() {
+            const random = boosters[Math.floor(Math.random() * boosters.length)];
+            document.getElementById("booster-output").innerHTML = random;
+        }
+
+        function showAnimal() {
+            const random = animalImages[Math.floor(Math.random() * animalImages.length)];
+            document.getElementById("animal-img").src = random;
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
