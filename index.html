@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mood Booster</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      height: 100%;
+    * {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
-      background: #f0f8ff;
+      box-sizing: border-box;
     }
+
+    html,
+    body {
+      font-family: 'Quicksand', sans-serif;
+      min-height: 100%;
+      background: linear-gradient(to bottom, #e6d9ff, #f9f3ff);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
     header {
-      background-color: #4CAF50;
+      background-color: #8f73d5;
       padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
+
     header h1 {
       color: white;
       margin: 0;
       font-size: 24px;
     }
+
     nav button {
       background: none;
       border: none;
@@ -31,22 +43,28 @@
       font-size: 16px;
       cursor: pointer;
     }
+
     .section {
       display: none;
       padding: 20px;
+      text-align: center;
     }
+
     .active {
       display: block;
     }
+
     h2 {
       color: #333;
     }
+
     .home-buttons {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-      height: calc(100vh - 80px);
+      height: calc(100vh - 51px);
     }
+
     .home-buttons button {
       width: 100%;
       height: 100%;
@@ -57,41 +75,72 @@
       background-position: center;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+
     .home-buttons button:hover {
       transform: translateY(-8px);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
+
     .home-buttons button span {
-      display: block;
-      background-color: rgba(0, 0, 0, 0.5);
       color: white;
-      font-size: 28px;
+      font-size: 32px;
       font-weight: bold;
-      padding: 12px 18px;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      border-radius: 12px;
-      text-align: center;
+      text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
     }
-    #motivation-output, #booster-output {
+
+    #motivation-output,
+    #booster-output {
       margin-top: 20px;
       max-width: 400px;
     }
+
     iframe {
       border: none;
       width: 100%;
       max-width: 600px;
       height: 340px;
     }
-    img.boost-img, #animal-img {
+
+    img.boost-img,
+    #animal-img {
       max-width: 300px;
       margin-top: 15px;
       border-radius: 10px;
     }
+
+    button {
+  background-color: #d79df8;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #efccfb;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
   </style>
 </head>
+
 <body>
   <header>
     <h1>Mood Booster</h1>
@@ -103,10 +152,14 @@
   <!-- Home Page -->
   <div id="home" class="section active" style="height: calc(100vh - 80px); padding: 0;">
     <div class="home-buttons">
-      <button style="background-image: url('images/kindness.jpg');" onclick="showSection('kindness')"><span>Motivation</span></button>
-      <button style="background-image: url('images/booster.jpg');" onclick="showSection('booster')"><span>Image Boost</span></button>
-      <button style="background-image: url('images/playlist.jpg');" onclick="showSection('playlist')"><span>Playlist</span></button>
-      <button style="background-image: url('images/animals.jpg');" onclick="showSection('animals')"><span>Cute Animals</span></button>
+      <button style="background-image: url('images/kindness.jpg');"
+        onclick="showSection('kindness')"><span>Motivation</span></button>
+      <button style="background-image: url('images/booster.jpg');" onclick="showSection('booster')"><span>Mood
+          Booster</span></button>
+      <button style="background-image: url('images/playlist.jpg');"
+        onclick="showSection('playlist')"><span>Playlist</span></button>
+      <button style="background-image: url('images/animals.jpg');" onclick="showSection('animals')"><span>Cute
+          Animals</span></button>
     </div>
   </div>
 
@@ -121,7 +174,10 @@
   <div id="booster" class="section">
     <h2>Boost Me With Images</h2>
     <button onclick="showBoosterImage()">Show Image</button>
-    <div id="booster-output"></div>
+<div style="display: flex; justify-content: center; margin-top: 15px;">
+  <div id="booster-output"></div>
+</div>
+
   </div>
 
   <!-- Playlist -->
@@ -135,7 +191,7 @@
   <div id="animals" class="section">
     <h2>Need Some Cuteness?</h2>
     <button onclick="showAnimal()">Show Me an Animal</button>
-    <div><img id="animal-img" src="" alt="Cute Animal" /></div>
+    <div><img id="animal-img" src=""/></div>
   </div>
 
   <script>
@@ -157,8 +213,8 @@
       "Don’t give up — great things take time."
     ];
 
-    const boosterImages = Array.from({length: 15}, (_, i) => `images/boost${i + 1}.jpg`);
-    const animalImages = Array.from({length: 15}, (_, i) => `images/animal${i + 1}.jpg`);
+    const boosterImages = Array.from({ length: 8 }, (_, i) => `images/boost${i + 1}.jpg`);
+    const animalImages = Array.from({ length: 8 }, (_, i) => `images/animal${i + 1}.jpg`);
 
     const playlists = [
       "https://www.youtube.com/embed/2Vv-BfVoq4g",
@@ -207,4 +263,5 @@
     document.getElementById("playlist-frame").src = playlists[Math.floor(Math.random() * playlists.length)];
   </script>
 </body>
+
 </html>
